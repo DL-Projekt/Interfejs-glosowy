@@ -2,6 +2,8 @@
 Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.
 
 
+Wersja w google doc: https://docs.google.com/document/d/1G-Uew9_8cC7Odqn4tBoVH9FwNHyuhIf6fB1uxQzHsYs/edit
+
 Do zrobienia:
 Podzielić projekt.
 Wykres Gantta, Milestones.
