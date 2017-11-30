@@ -31,13 +31,14 @@ II. Wykres Gantta:
 Zakończenie każdego etapu projektu.
 
 III. SWOT:
-Mocne strony:
+
+a) Mocne strony:
 -posiadamy duże umiejętności programistyczne
 -
-Słabe strony:
+b) Słabe strony:
 -musimy się doszkolić w czymś?
-Szanse:
+c) Szanse:
 -projekt jest ciekawy i angażujący przez co nie ubędzie nam zapału do jego realizacji? xD
-Zagrożenia:
+d) Zagrożenia:
 -serwery Sarmaty przestaną działać
 -natłok obowiązków nie pozwoli nam osiągnąć oczekiwanego rezultatu
