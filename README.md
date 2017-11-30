@@ -1,5 +1,5 @@
 # Interfejs-glosowy
-Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.
+Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.
 
 <b>------------------------------------------------------------------------------------------------------------</b>
 To usunac kiedys:
@@ -16,21 +16,16 @@ VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
 <b>------------------------------------------------------------------------------------------------------------</b>
 
-Temat: Dostęp do plików przy pomocy komend głosowych.
-Założenia projektowe:
-Program za pomocą konkretnych komend głosowych otwiera/zamyka foldery/pliki znajdujące się w obecnie otwartym oknie. Możliwość poruszania się pomiędzy folderami. 
-Poruszanie się pomiędzy folderami w systemie windows oraz otwieranie zawartych w tych folderach plików.
-
-I. Etapy projektu:
+<b>I. Etapy projektu:</b>
 1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu
 2. Zaimplementowanie Sarmaty
 3. Integracja Sarmaty z opracowanym programem
 4. Testowanie w środowisku docelowym (windows albo android) (na bieżąco)
 
-II. Wykres Gantta:
+<b>II. Wykres Gantta:</b>
 Zakończenie każdego etapu projektu.
 
-III. SWOT:
+<b>III. SWOT:</b>
 
 a) Mocne strony:
 -posiadamy duże umiejętności programistyczne
