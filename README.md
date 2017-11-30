@@ -5,12 +5,12 @@ Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w 
 Wersja w google doc: https://docs.google.com/document/d/1G-Uew9_8cC7Odqn4tBoVH9FwNHyuhIf6fB1uxQzHsYs/edit
 
 Do zrobienia:
-Podzielić projekt.
-Wykres Gantta, Milestones.
-SWOT, ryzyka (Szybkość pracy SARMATy)
-Deliverables?? Działający program?
-Techniki teamowe?? 
-Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
+I. Podzielić projekt.
+II. Wykres Gantta, Milestones.
+III. SWOT, ryzyka (Szybkość pracy SARMATy)
+IV. Deliverables?? Działający program?
+V. Techniki teamowe?? 
+VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
 Temat: Dostęp do plików przy pomocy komend głosowych.
 Założenia projektowe:
@@ -26,8 +26,6 @@ Etapy projektu:
 II. Wykres Gantta:
 Zakończenie każdego etapu projektu.
 
-
-
 III. SWOT:
 Mocne strony:
 -posiadamy duże umiejętności programistyczne
