@@ -1,6 +1,8 @@
 # Interfejs-glosowy
 Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.
 
+<b>------------------------------------------------------------------------------------------------------------</b>
+To usunac kiedys:
 
 Wersja w google doc: https://docs.google.com/document/d/1G-Uew9_8cC7Odqn4tBoVH9FwNHyuhIf6fB1uxQzHsYs/edit
 
@@ -12,7 +14,7 @@ IV. Deliverables?? Działający program?
 V. Techniki teamowe?? 
 VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
-<b>---------------------------qweqwe-</b>
+<b>------------------------------------------------------------------------------------------------------------</b>
 
 Temat: Dostęp do plików przy pomocy komend głosowych.
 Założenia projektowe:
