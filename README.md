@@ -12,7 +12,7 @@ IV. Deliverables?? Działający program?
 V. Techniki teamowe?? 
 VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
-<B>----------------------------<B\>
+<B>----------------------------<\B>
 
 Temat: Dostęp do plików przy pomocy komend głosowych.
 Założenia projektowe:
