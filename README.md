@@ -12,12 +12,14 @@ IV. Deliverables?? Działający program?
 V. Techniki teamowe?? 
 VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
+<B>----------------------------<B/>
+
 Temat: Dostęp do plików przy pomocy komend głosowych.
 Założenia projektowe:
 Program za pomocą konkretnych komend głosowych otwiera/zamyka foldery/pliki znajdujące się w obecnie otwartym oknie. Możliwość poruszania się pomiędzy folderami. 
 Poruszanie się pomiędzy folderami w systemie windows oraz otwieranie zawartych w tych folderach plików.
 
-Etapy projektu:
+I. Etapy projektu:
 1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu
 2. Zaimplementowanie Sarmaty
 3. Integracja Sarmaty z opracowanym programem
