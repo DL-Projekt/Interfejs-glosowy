@@ -3,8 +3,8 @@
 <b>Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych w środowisku android.</b>
 
 
-<b>Spis treści:</b>
-I. Wstępna koncepcja/Zasada działania
+<b>Spis treści:</b>/n
+I. Wstępna koncepcja/Zasada działania/n
 II. Etapy projektu
 III. Wykres Gantta
 IV. Deliverables
