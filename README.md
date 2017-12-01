@@ -38,3 +38,7 @@ c) Szanse:
 d) Zagrożenia:
 -serwery Sarmaty przestaną działać
 -natłok obowiązków nie pozwoli nam osiągnąć oczekiwanego rezultatu
+
+<b>IV. Technika pracy w zespole:</b>
+
+Przyjęliśmy wzór techniki demokracyjnej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutować, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
