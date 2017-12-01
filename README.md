@@ -1,47 +1,88 @@
-# Interfejs-glosowy
-<b>Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.</b>
+<b>Tytuł: Interfejs-głosowy</b>
 
-<b>------------------------------------------------------------------------------------------------------------</b>
+<b>Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych w środowisku android.</b>
 
-To usunac kiedys:
 
-Wersja w google doc: https://docs.google.com/document/d/1G-Uew9_8cC7Odqn4tBoVH9FwNHyuhIf6fB1uxQzHsYs/edit
+<b>Spis treści:</b>
+I. Wstępna koncepcja/Zasada działania
+II. Etapy projektu
+III. Wykres Gantta
+IV. Deliverables
+V. SWOT
+VI. Technika pracy w zespole
+VII. Informacje organizacyjne
 
-Do zrobienia:
-I. Podzielić projekt.
-II. Wykres Gantta, Milestones.
-III. SWOT, ryzyka (Szybkość pracy SARMATy)
-IV. Deliverables?? Działający program?
-V. Techniki teamowe?? 
-VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 
-<b>------------------------------------------------------------------------------------------------------------</b>
+<b>I. Wstępna koncepcja/Zasada działania: </b>
+Ten punkt może się lekko zmienić w trakcie realizowania projektu.
 
-<b>I. Etapy projektu:</b>
-1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu
-2. Zaimplementowanie Sarmaty
-3. Integracja Sarmaty z opracowanym programem
-4. Testowanie w środowisku docelowym (windows albo android) (na bieżąco)
+Nasza aplikacja będzie działać w tle w trybie uśpionym i oczekiwać na słowo kluczowe, które aktywują oprogramowanie do dalszego działania lub program aktywowany będzie przyciskiem.
+Komenda głosowa zostanie wstępnie nagrana lub bezpośrednio przekazana do oprogramowania “Sarmata”, którego zadaniem będzie zwrócenie tej samej komendy w formie tekstu.
+Tekst zostanie przekazany do właściwej części aplikacji która na jego podstawie ma wykonać jakąś czynność.
 
-<b>II. Wykres Gantta:</b>
-Zakończenie każdego etapu projektu.
+Przykładowo, zdanie “Sarmata, otwórz plik kalkulator.” zostanie rozbite i poszczególne jego składowe będą zinterpretowane przez oprogramowanie w następujący sposób:
 
-<b>III. SWOT:</b>
+“Saramata” - wprowadza program w stan “nasłuchiwania”;
+“otwórz plik” - jedna z funkcji aktywnych posiadanych przez aplikację;
+“kalkulator” - nazwa danego pliku na który ma zadziałać wypowiedziana wcześniej funkcja.
 
+Program będzie miał prawdopodobnie formę drzewka, gdzie trzeba będzie wypowiadać komendy w określonej kolejności (Sarmata->otwórz plik->kalkulator), z każdą kolejną dodaną funkcją pojawiać się będą nowe rozgałęzienia. 
+
+Kod będzie pisany w taki sposób, aby łatwo można było dodawać kolejne funkcje.
+
+<b>II. Etapy projektu</b>
+1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu,
+2. Zaimplementowanie Sarmaty,
+3. Integracja Sarmaty z opracowanym programem,
+4. Testowanie w środowisku docelowym (na bieżąco). 
+  
+<b>III. Wykres Gantta:</b>
+Zdjęcie.
+ 
+<b>IV. Deliverables:</b>
+1. Dokumentacja.
+2. Aplikacja w wersji 0.5 gdzie tekst będzie wpisywany wyłącznie ręcznie, “Sarmata” nie będzie jeszcze potrzebny.
+3. W pełni sprawna aplikacja (wersja 1.0), gdzie sterowanie będzie odbywać się jedynie przy pomocy mowy.
+4. Prezentacja/Opis działania.
+
+<b>V. SWOT:</b>
 Strengths:
-- znajomość wielu języków programowania(Assembly,C,C++,C#,Java)
-- znajomość platformy, na którą przygotowujemy projekt(Android)
-- znajomość oraz umiejętność obsługi niezbędnych programów do wykonania zadania
+•	znajomość wielu języków programowania(Assembly,C,C++,C#,Java)
+•	znajomość platformy, na którą przygotowujemy projekt(Android)
+•	znajomość oraz umiejętność obsługi niezbędnych programów do wykonania zadania
 
 Weaknesses:
-b) Słabe strony:
--musimy się doszkolić w czymś?
-c) Szanse:
--projekt jest ciekawy i angażujący przez co nie ubędzie nam zapału do jego realizacji? xD
-d) Zagrożenia:
--serwery Sarmaty przestaną działać
--natłok obowiązków nie pozwoli nam osiągnąć oczekiwanego rezultatu
+•	pierwsza styczność z Sarmatą
+•	tworzenie aplikacji typu RunInBackground
 
-<b>IV. Technika pracy w zespole:</b>
+Opportunities:
+•	możliwość rozwoju aplikacji w sensie kontentu
+•	możliwość rozwoju aplikacji na inne platformy
 
-Przyjęliśmy wzór techniki demokracyjnej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutowany, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
+Threats:
+•	problem z serwerami Sarmaty
+•	brak czasu
+•	problemy implementacyjne
+ 
+<b>VI. Technika pracy w zespole:</b>
+Przyjęliśmy wzór techniki demokratycznej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutowany, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
+
+Problemem są sytuację, gdy przynajmniej jedna osoba upiera się przy swoim zdaniu, ale ustaliliśmy, że wtedy zagramy w marynarza.
+
+
+<b>VII. Informacje organizacyjne:</b>
+Zespół (imię i nazwisko, kierunek, github nick):
+Damian Czajka, elektronika III, Damiarno
+Marek Krupa, elektronika III, ArdeoDeo
+Szymon Bortel, elektronika III, majdaneq
+
+Link do strony projektu: https://github.com/DL-Projekt
+
+Data: 1.12.2017
+
+
+
+
+
+
+
