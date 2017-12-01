@@ -30,7 +30,7 @@ Program będzie miał prawdopodobnie formę drzewka, gdzie trzeba będzie wypowi
 
 Kod będzie pisany w taki sposób, aby łatwo można było dodawać kolejne funkcje.
 
-<b>II. Etapy projektu</b>  
+<b>II. Etapy projektu</b>
 1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu,  
 2. Zaimplementowanie Sarmaty,  
 3. Integracja Sarmaty z opracowanym programem,  
@@ -63,7 +63,7 @@ Threats:
 •	problem z serwerami Sarmaty  
 •	brak czasu  
 •	problemy implementacyjne  
- 
+   
 <b>VI. Technika pracy w zespole:</b>  
 Przyjęliśmy wzór techniki demokratycznej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutowany, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
 
