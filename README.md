@@ -1,5 +1,5 @@
 # Interfejs-glosowy
-<b>Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych.</b>
+<b>Temat: Interfejs pozwalający na dostęp do plików i folderów oraz poruszaniu się w nich, tylko przy użyciu komend głosowych w środowisku android.</b>
 
 <b>------------------------------------------------------------------------------------------------------------</b>
 
@@ -21,7 +21,7 @@ VI. Prezentacja pitchdeck??? cos ze startupami, ale to chyba na koniec
 1. Opracowanie programu realizującego polecenia wydawane za pomocą tekstu
 2. Zaimplementowanie Sarmaty
 3. Integracja Sarmaty z opracowanym programem
-4. Testowanie w środowisku docelowym (windows albo android) (na bieżąco)
+4. Testowanie w środowisku docelowym (na bieżąco)
 
 <b>II. Wykres Gantta:</b>
 Zakończenie każdego etapu projektu.
