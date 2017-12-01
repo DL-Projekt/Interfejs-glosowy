@@ -41,4 +41,4 @@ d) Zagrożenia:
 
 <b>IV. Technika pracy w zespole:</b>
 
-Przyjęliśmy wzór techniki demokracyjnej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutować, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
+Przyjęliśmy wzór techniki demokracyjnej. Opiera się ona na założeniu, że w każdej kwestii głos każdego z uczestników projektu się liczy. Pozwoli to na prowadzenie projektu w sposób zorganizowany, ponieważ każdy kolejny etap będzie przedyskutowany, co pozwoli na znalezienie zawsze najlepszego rozwiązania. 
