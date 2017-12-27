@@ -3,6 +3,10 @@ using Android.Widget;
 using Android.OS;
 using System;
 using Android;
+using Android.Content;
+using Android.Provider;
+using Android.Media;
+using System.IO;
 
 namespace Androido
 {
@@ -13,6 +17,15 @@ namespace Androido
         EditText edit;
         Button b1;
         TextView text2;
+        private EventArgs e;
+        MediaPlayer _player;
+        static string filename = "Bitamina - Dom.mp3";
+        static string filename2 = "test.mp3";
+        string path = Android.OS.Environment.DirectoryDownloads + "/" + filename;
+        string path2 = "Bitamina - Dom.mp3";
+        string path3 = Android.OS.Environment.DirectoryMusic + "/" + filename2;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -23,7 +36,7 @@ namespace Androido
             b1 = FindViewById<Button>(Resource.Id.button1);
             text2 = FindViewById<TextView>(Resource.Id.textView2);
             string command = "";
-
+            _player = MediaPlayer.Create(this, Android.OS.Environment.DirectoryMusic);
             text1.Text = "Wpisz komendę";
 
             b1.Click += delegate
@@ -31,23 +44,80 @@ namespace Androido
                 command = edit.Text;
                 text1.Text = command;
                 Toast.MakeText(this, "Wybrana komenda to :" + command, ToastLength.Long).Show();
-                Execute(b1,command);
-            }; 
+                Execute(b1, command);
+            };
         }
-
-        public void Execute(object sender,string command)
+     
+        public void Execute(object sender, string command)
         {
-            switch(command)
+
+            if (command == "Aparat" || command == "APARAT") command = "aparat";
+            if (command == "Muzyka" || command == "MUZYKA") command = "muzyka";
+            if (command == "Tak" || command == "TAK") command = "tak";
+
+            switch (command)
             {
-                case "tak": text1.Text = "tak!";
+                case "tak":
+                    text2.Text = path;
                     break;
-                default:    text1.Text = "nie!";
+
+                case "muzyka":
+                    text2.Text = path3;
+                    try
+                    {
+                        _player.SetDataSource(path3);
+                        _player.Prepare();
+                        _player.Start();
+                        _player.Looping = true;
+                    }
+                    catch
+                    {
+                        Toast.MakeText(this, "Nie mam czego odtworzyć!", ToastLength.Long).Show();
+                    }
+
+                    try
+                    {
+                        StartPlayer(path3);
+                    }
+                    catch {
+                        Toast.MakeText(this, "CHUJ", ToastLength.Long).Show();
+                    }
+                    break;
+
+                case "aparat":
+                    text2.Text = "zdjęcie!";
+                    Camera_Click(this, e);
+                    break;
+
+
+                default:
+                    text2.Text = "Nie znam takiej komendy.";
                     break;
 
             }
         }
 
+        private void Camera_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(MediaStore.ActionImageCapture);
+            StartActivityForResult(intent, 0);
+        }
 
+        protected MediaPlayer player;
+        public void StartPlayer(String filePath)
+        {
+            if (player == null)
+            {
+                player = new MediaPlayer();
+            }
+            else
+            {
+                player.Reset();
+                player.SetDataSource(filePath);
+                player.Prepare();
+                player.Start();
+            }
+        }
     }
 }
 
