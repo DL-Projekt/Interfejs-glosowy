@@ -17,10 +17,9 @@ namespace Androido
         EditText edit;
         Button b1;
         TextView text2;
-        private EventArgs e; 
-      //  string path = Android.OS.Environment.ExternalStoragePublicDirectory.AbsolutePath +("/Music/test.mp3").Path;
+        private EventArgs e;      
         string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/test.mp3");
-
+        bool IsPlaying = false;
         MediaPlayer player;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -35,7 +34,7 @@ namespace Androido
             string command = "";
             //_player = MediaPlayer.Create(this, Android.OS.Environment.DirectoryMusic);
             text1.Text = "Wpisz komendę";
-
+            //GetMusicFiles(int choice);
             b1.Click += delegate
             {
                 command = edit.Text;
@@ -53,7 +52,7 @@ namespace Androido
         }
         
         public void Execute(object sender, string command)
-        {
+        {   
 
             if (command == "Aparat" || command == "APARAT" || command == "APARAT " || command == "Aparat " || command == "aparat ") command = "aparat";
             if (command == "Muzyka" || command == "MUZYKA" || command == "MUZYKA " || command == "Muzyka " || command == "muzyka ") command = "muzyka";
@@ -66,15 +65,25 @@ namespace Androido
                     break;
 
                 case "muzyka":
-                    text2.Text = path;
-                    player = new MediaPlayer();
+                    if (!IsPlaying) player = new MediaPlayer();
+                    else
+                    {
+                        player.Stop();
+                        IsPlaying = false;
+                        player = new MediaPlayer();
+                    }
+
+                    Random rnd = new Random();
+                    int x = rnd.Next(1,20);
+                    
                     try
                     {
+                        path = GetMusicFiles(x);
+                        text2.Text = path + "          " + x.ToString();
                         player.SetDataSource(path);
                         player.Prepare();
                         player.Start();
-                        StartPlayer(path);
-                        
+                        IsPlaying = true;
                     }
                     catch
                     {
@@ -100,22 +109,23 @@ namespace Androido
         {
             Intent intent = new Intent(MediaStore.ActionImageCapture);
             StartActivityForResult(intent, 0);
-        }
-        
+        }               
 
-        public void StartPlayer(String filePath)
+        public string GetMusicFiles(int choice)
         {
-            if (player == null)
+            string s="";
+            string[] x = new string[100];            
+            x=Android.OS.Environment.GetExternalStoragePublicDirectory("Music").List(); 
+            
+            try
             {
-                player = new MediaPlayer();
+             s = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/") + x[choice];
             }
-            else
+            catch
             {
-                player.Reset();
-                player.SetDataSource(filePath);
-                player.Prepare();
-                player.Start();
+                Toast.MakeText(this, "Spróbuj ponownie!", ToastLength.Long).Show();
             }
+            return s;
         }
     }
 }
