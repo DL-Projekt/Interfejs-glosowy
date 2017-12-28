@@ -17,15 +17,11 @@ namespace Androido
         EditText edit;
         Button b1;
         TextView text2;
-        private EventArgs e;
-        MediaPlayer _player;
-        static string filename = "/storage/emulated/0/Download/Bitamina - Dom.mp3";
-        static string filename2 = "test.mp3";
-        //string path = Android.OS.Environment.GetExternalStoragePublicDirectory.Path();
-        //string path = Android.OS.Environment.DirectoryDownloads + "/" + filename;
-       // string path2 = "Bitamina - Dom.mp3";
-        string path3 = Android.OS.Environment.DirectoryMusic + "/" + filename2;
-         MediaPlayer player;
+        private EventArgs e; 
+      //  string path = Android.OS.Environment.ExternalStoragePublicDirectory.AbsolutePath +("/Music/test.mp3").Path;
+        string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/test.mp3");
+
+        MediaPlayer player;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -51,8 +47,7 @@ namespace Androido
             edit.TextChanged += delegate
             {
                 command = edit.Text;
-                text1.Text = command;
-                Toast.MakeText(this, "Wybrana komenda to :" + command, ToastLength.Long).Show();
+                text1.Text = command;                
                 Execute(b1, command);
             };
         }
@@ -71,52 +66,21 @@ namespace Androido
                     break;
 
                 case "muzyka":
-                    text2.Text = path3;
+                    text2.Text = path;
+                    player = new MediaPlayer();
                     try
                     {
-                        _player.SetDataSource("https://www.searchgurbani.com/audio/sggs/1.mp3");
-                        _player.Prepare();
-                        _player.Start();
-                        _player.Looping = true;
-                    }
-                    catch
-                    {
-                        Toast.MakeText(this, "Nie mam czego odtworzyć!", ToastLength.Long).Show();
-                    }
-
-                    try
-                    {
-                        StartPlayer(filename);
-                    }
-                    catch {
-                        Toast.MakeText(this, "CHO CHO CHO", ToastLength.Long).Show();
-                    }
-
-                    try
-                    {
-                        _player.SetDataSource(path3);
-                        _player.Prepare();
-                        _player.Start();
-                        _player.Looping = true;
-                    }
-                    catch
-                    {
-                        Toast.MakeText(this, "Nie mam czego odtworzyć!", ToastLength.Long).Show();
-                    }
-
-                    try
-                    {
-                        var mp3TestFile = "https://archive.org/download/testmp3testfile/mpthreetest.mp3";
-                        player = new MediaPlayer();
-                        player.SetAudioStreamType(Android.Media.Stream.Music);
-                        
+                        player.SetDataSource(path);
                         player.Prepare();
                         player.Start();
+                        StartPlayer(path);
+                        
                     }
                     catch
                     {
                         Toast.MakeText(this, "Nie mam czego odtworzyć!", ToastLength.Long).Show();
                     }
+
                     break;
 
                 case "aparat":
@@ -137,8 +101,8 @@ namespace Androido
             Intent intent = new Intent(MediaStore.ActionImageCapture);
             StartActivityForResult(intent, 0);
         }
-
         
+
         public void StartPlayer(String filePath)
         {
             if (player == null)
