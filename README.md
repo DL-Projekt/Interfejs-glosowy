@@ -37,7 +37,7 @@ Kod będzie pisany w taki sposób, aby łatwo można było dodawać kolejne funk
 4. Testowanie w środowisku docelowym (na bieżąco).   
   
 <b>III. Wykres Gantta:</b>  
-Zdjęcie.  
+![](wykres_gantta.jpg) 
   
 <b>IV. Deliverables:</b>  
 1. Dokumentacja.  
