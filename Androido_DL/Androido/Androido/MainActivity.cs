@@ -9,17 +9,14 @@ using Android.Media;
 using System.IO;
 using Android.Graphics;
 using Android.Speech; //dodane
-using System.Collections.Generic;//dodane
+//using System.Collections.Generic;//dodane
 
 namespace Androido
 {
     [Activity(Label = "Androido", MainLauncher = true)]
     public class MainActivity : Activity
     { 
-     #region deklaracje
         TextView text1;
-        EditText edit;
-        Button b1;
         TextView text2;
         private EventArgs e;      
         string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/test.mp3");
@@ -27,67 +24,25 @@ namespace Androido
         MediaPlayer player;
         ImageView image;
         string pathPic;
-        #endregion
 
-
-        //dodane
         private bool isRecording;
         private readonly int VOICE = 10;
-        private TextView textBox;
         private Button recButton;
-        //
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            #region inicjalizacja 
+
             SetContentView(Resource.Layout.Main);
             text1 = FindViewById<TextView>(Resource.Id.textView1);
-            edit = FindViewById<EditText>(Resource.Id.editText1);
-            b1 = FindViewById<Button>(Resource.Id.button1);
             text2 = FindViewById<TextView>(Resource.Id.textView2);
             image = FindViewById<ImageView>(Resource.Id.imageView1);
-                     
-            string command = "";           
-            text1.Text = "Wpisz komendę";
-            #endregion
-
-            //to już niepotrzebne
-            b1.Click += delegate
-            {
-                command = edit.Text;
-                text1.Text = command;
-                Toast.MakeText(this, "Wybrana komenda to :" + command, ToastLength.Long).Show();
-                Execute(b1, command);
-            };
-
-            edit.TextChanged += delegate
-            {
-                command = edit.Text;
-                text1.Text = command;                
-                Execute(b1, command);
-            };
-
-
-
-
-
-
-
-            //dodane
-
-
-            //base.OnCreate(bundle);
-
-            // set the isRecording flag to false (not recording)
-            isRecording = false;
-
-            // Set our view from the "main" layout resource
-            //SetContentView(Resource.Layout.Main);
-
-            // get the resources from the layout
             recButton = FindViewById<Button>(Resource.Id.btnRecord);
-            textBox = FindViewById<TextView>(Resource.Id.textYourText);
+
+            text1.Text = "Wpisz komendę";            
+
+            isRecording = false;            
 
             // check to see if we can actually record - if we can, assign the event to the button
             string rec = Android.Content.PM.PackageManager.FeatureMicrophone;
@@ -98,54 +53,35 @@ namespace Androido
                  alert.SetTitle("You don't seem to have a microphone to record with");
                  alert.SetPositiveButton("OK", (sender, e) =>
                  {
-                     textBox.Text = "No microphone present";
+                     text2.Text = "No microphone present";
                      recButton.Enabled = false;
                      return;
                  });
 
                  alert.Show();
              }
-             else
-                 recButton.Click += delegate
-                 {
-                     // change the text on the button
-                     recButton.Text = "End Recording";
-                     isRecording = !isRecording;
-                     if (isRecording)
-                     {
-                         // create the intent and start the activity
-                         var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
+            else
+            recButton.Click += delegate
+            {
+                isRecording = true;
+                if (isRecording)
+                {
+                    // create the intent and start the activity
+                    var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
 
-                         // put a message on the modal dialog
-                         //voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, Application.Context.GetString(Resource.String.messageSpeakNow));
+                    // if there is more then 1.5s of silence, consider the speech over
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
 
-                         // if there is more then 1.5s of silence, consider the speech over
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1500);
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
-
-                         // you can specify other languages recognised here, for example
-                         // voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.German);
-                         // if you wish it to recognise the default Locale language and German
-                         // if you do use another locale, regional dialects may not be recognised very well
-
-                         voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
-                         StartActivityForResult(voiceIntent, VOICE);
-                     }
-                 };
-             //
-
-
-     
-
-
+                    voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default); //język
+                    StartActivityForResult(voiceIntent, VOICE);
+                }
+            };
         }
 
-
-
-        //dodane
         protected override void OnActivityResult(int requestCode, Result resultVal, Intent data)
         {
             if (requestCode == VOICE)
@@ -156,48 +92,19 @@ namespace Androido
                     if (matches.Count != 0)
                     {
                         string textInput = matches[0];
-
-                        // limit the output to 500 characters
-                        if (textInput.Length > 500)
-                            textInput = textInput.Substring(0, 500);
-                        //textBox.Text = String.Empty;
-                        textBox.Text = textInput;
-                        /////
-                        //command = edit.Text;
-                       // text1.Text = String.Empty;
                         text1.Text = textInput;
-                        Execute(b1, textInput);
+                        Execute(textInput);
                     }
-                    else
-                        textBox.Text = "No speech was recognised";
-                    // change the text back on the button
-                    recButton.Text = "Start Recording";
+                    else text2.Text = "No speech was recognised";
                 }
             }
 
+            isRecording = false;
+
             base.OnActivityResult(requestCode, resultVal, data);
         }
-        //
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public void Execute(object sender, string command)
+        public void Execute(string command)
         {
             command = CheckInput(command);
             
@@ -314,4 +221,3 @@ namespace Androido
         }
     }
 }
-
