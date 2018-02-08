@@ -71,11 +71,6 @@ Problemem są sytuację, gdy przynajmniej jedna osoba upiera się przy swoim zda
 
 
 <b>VII. Informacje organizacyjne:</b>  
-Zespół (imię i nazwisko, kierunek, github nick):  
-Damian Czajka, elektronika III, Damiarno  
-Marek Krupa, elektronika III, ArdeoDeo  
-Szymon Bortel, elektronika III, majdaneq  
-
 Link do strony projektu: https://github.com/DL-Projekt  
 
 Data: 1.12.2017  
