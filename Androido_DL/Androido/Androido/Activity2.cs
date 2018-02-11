@@ -26,8 +26,7 @@ namespace Androido
             webView = FindViewById<WebView>(Resource.Id.webView);
             textUrl = FindViewById<EditText>(Resource.Id.txtUrl);
 
-
-
+            webView.SetWebViewClient(new HelloWebViewClient (this));
 
             WebSettings webSettings = webView.Settings;
             webSettings.JavaScriptEnabled = true;
