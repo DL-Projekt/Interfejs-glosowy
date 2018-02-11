@@ -7,61 +7,32 @@ using Android.Views;
 using Android.Widget;
 using Android.Speech;
 
-
-//text2 to jest to co powiedzialem, a text3 to bledy
-
 namespace Androido
 {
-    [Activity(Label = "Androido", MainLauncher = true)]
-    public class MainActivity : Activity
+    [Activity(Label = "Activity_SpeechRecognition")]
+    public class Activity_SpeechRecognition : Activity
     {
-        TextView text1;
-        TextView text2;
-        TextView text3;
-        Button recButton;
-        ImageView image;
-
-
-        private EventArgs e;
-
-
-
-
-
-
         public bool isRecording;
 
         Work mWork;
 
 
+        public void Update_Text2(string txt)
+        {
+            TextView text2 = (TextView)this.FindViewById<TextView>(Resource.Id.textView2);
+            text2.Text = txt;
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
-            text1 = FindViewById<TextView>(Resource.Id.textView1);
-            text2 = FindViewById<TextView>(Resource.Id.textView2);
-            text3 = FindViewById<TextView>(Resource.Id.textView3);
-            image = FindViewById<ImageView>(Resource.Id.imageView1);
-            recButton = FindViewById<Button>(Resource.Id.btnRecord);
-
-            text1.Text = "Wpisz komendę";
-
-            mWork = new Work(this);
+            mWork = new Work(this);    
 
 
-
-            recButton.Click += delegate
-            {
-                speech_recognition();
-            };
+            speech_recognition();
         }
-
-
-
-
-
 
         public void speech_recognition()
         {
@@ -99,16 +70,15 @@ namespace Androido
                     if (matches.Count != 0)
                     {
                         string textInput = matches[0];
-                        text2.Text = textInput;
-                       // Update_Text2(textInput);
+                        Update_Text2(textInput);
                         isRecording = mWork.Execute(textInput);
                     }
-                    else text2.Text = "Nie zarejestrowalem mowy";
+                    else Update_Text2("Nie zarejestrowalem mowy");
                 }
             }
 
             if (isRecording) speech_recognition();
-           // else Finish();
+            else Finish();
         }
     }
 }
