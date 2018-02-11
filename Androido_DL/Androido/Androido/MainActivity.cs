@@ -9,6 +9,7 @@ using Android.Media;
 using System.IO;
 using Android.Graphics;
 using Android.Speech; //dodane
+using Android.Webkit;
 //using System.Collections.Generic;//dodane
 
 namespace Androido
@@ -161,6 +162,15 @@ namespace Androido
                         image.SetImageBitmap(bmImg);
                     }
                     catch { Toast.MakeText(this, "NULL!", ToastLength.Long).Show(); }
+                    break;
+
+                case "YouTube":                
+
+                    var webView = FindViewById<WebView>(Resource.Id.webView);
+                    WebSettings settings = webView.Settings;
+                    settings.JavaScriptEnabled = true;
+                    webView.SetWebChromeClient(new WebChromeClient());
+                    webView.LoadUrl("https://www.youtube.com/watch?v=NCtzkaL2t_Y");
                     break;
                 default:
                     text2.Text = "Nie znam takiej komendy.";
