@@ -44,23 +44,29 @@ namespace Androido
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040004
-			public const int btnRecord = 2130968580;
+			// aapt resource value: 0x7f040002
+			public const int btnLoad = 2130968578;
 			
 			// aapt resource value: 0x7f040006
-			public const int imageView1 = 2130968582;
+			public const int btnRecord = 2130968582;
 			
-			// aapt resource value: 0x7f040001
-			public const int linearLayout1 = 2130968577;
-			
-			// aapt resource value: 0x7f040002
-			public const int textView1 = 2130968578;
+			// aapt resource value: 0x7f040008
+			public const int imageView1 = 2130968584;
 			
 			// aapt resource value: 0x7f040003
-			public const int textView2 = 2130968579;
+			public const int linearLayout1 = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int textView1 = 2130968580;
 			
 			// aapt resource value: 0x7f040005
-			public const int textYourText = 2130968581;
+			public const int textView2 = 2130968581;
+			
+			// aapt resource value: 0x7f040007
+			public const int textYourText = 2130968583;
+			
+			// aapt resource value: 0x7f040001
+			public const int txtUrl = 2130968577;
 			
 			// aapt resource value: 0x7f040000
 			public const int webView = 2130968576;
@@ -82,7 +88,10 @@ namespace Androido
 			public const int layout1 = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Main = 2130837505;
+			public const int layout2 = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Main = 2130837506;
 			
 			static Layout()
 			{

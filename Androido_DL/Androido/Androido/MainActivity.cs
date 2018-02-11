@@ -172,6 +172,11 @@ namespace Androido
                     webView.SetWebChromeClient(new WebChromeClient());
                     webView.LoadUrl("https://www.youtube.com/watch?v=NCtzkaL2t_Y");
                     break;
+
+                case "internet":
+                    Intent nextActivity2 = new Intent(this, typeof(Activity2));
+                    StartActivity(nextActivity2);
+                    break;
                 default:
                     text2.Text = "Nie znam takiej komendy.";
                     break;

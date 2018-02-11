@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:hint="http://google.com"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtUrl" />
+    <Button
+        android:text="Idz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLoad" />
+    <android.webkit.WebView
+        android:layout_width="match_parent"
+        android:layout_height="526.5dp"
+        android:id="@+id/webView"
+        android:layout_marginBottom="504.5dp" />
+</LinearLayout>
