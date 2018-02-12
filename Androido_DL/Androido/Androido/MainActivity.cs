@@ -7,108 +7,111 @@ using Android.Views;
 using Android.Widget;
 using Android.Speech;
 
-
-//text2 to jest to co powiedzialem, a text3 to bledy
-
 namespace Androido
 {
     [Activity(Label = "Androido", MainLauncher = true)]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, IRecognitionListener
     {
-        TextView text1;
-        TextView text2;
-        TextView text3;
+        TextView Text_Title;
+        TextView Text_Speech;
+        TextView Text_Information;
+        TextView Text_Error;
         Button recButton;
         ImageView image;
 
-
-        private EventArgs e;
-
-
-
-
-
-
-        public bool isRecording;
+        private SpeechRecognizer sr;
+        public bool RecordingOn = false;
 
         Work mWork;
 
 
-
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(savedInstanceState);
+            base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+           
+            mWork = new Work(this);
 
-            text1 = FindViewById<TextView>(Resource.Id.textView1);
-            text2 = FindViewById<TextView>(Resource.Id.textView2);
-            text3 = FindViewById<TextView>(Resource.Id.textView3);
+            Text_Title = FindViewById<TextView>(Resource.Id.textView1);
+            Text_Speech = FindViewById<TextView>(Resource.Id.textView2);
+            Text_Information = FindViewById<TextView>(Resource.Id.textView3);
+            Text_Error = FindViewById<TextView>(Resource.Id.textView4);
             image = FindViewById<ImageView>(Resource.Id.imageView1);
             recButton = FindViewById<Button>(Resource.Id.btnRecord);
 
-            text1.Text = "Wpisz komendę";
+            sr = SpeechRecognizer.CreateSpeechRecognizer(this);
+            sr.SetRecognitionListener(this);
 
-            mWork = new Work(this);
-
-
-
+            
             recButton.Click += delegate
             {
-                speech_recognition();
+                if(!RecordingOn)
+                {
+                    RecordingOn = true;
+                    speech_recognition();
+                }                
             };
         }
 
-
-
-
-
-
         public void speech_recognition()
         {
-            isRecording = true;
-
-            if (check_micro(Android.Content.PM.PackageManager.FeatureMicrophone)) //check to see if we can actually record - if we can, assign the event to the button
+            string test = Android.Content.PM.PackageManager.FeatureMicrophone;
+            if (test == "android.hardware.microphone")
             {
-                var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
-
-                // if there is more then 1.5s of silence, consider the speech over
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 15000);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 15000);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
-                voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
-
-                voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default); //język
-                StartActivityForResult(voiceIntent, mWork.VOICE);
-            }
-        }
-
-        public bool check_micro(string rec)
-        {
-            if (rec != "android.hardware.microphone") return false; // no microphone, no recording. Disable the button and output an alert
-            else return true;
-        }
-
-        protected override void OnActivityResult(int requestCode, Result resultVal, Intent data)
-        {
-            if (requestCode == mWork.VOICE)
-            {
-                if (resultVal == Result.Ok)
+                if(RecordingOn)
                 {
-                    var matches = data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
-                    if (matches.Count != 0)
-                    {
-                        string textInput = matches[0];
-                        text2.Text = textInput;
-                       // Update_Text2(textInput);
-                        isRecording = mWork.Execute(textInput);
-                    }
-                    else text2.Text = "Nie zarejestrowalem mowy";
+                    Intent intent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
+                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 3500);
+                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 3500);
+                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
+                    intent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
+                    intent.PutExtra(RecognizerIntent.ExtraCallingPackage, "this package");
+                    intent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
+                    sr.StartListening(intent);
                 }
             }
-
-            if (isRecording) speech_recognition();
-           // else Finish();
+            else Text_Information.Text = "Brak mikrofonu";
         }
+
+        public void OnReadyForSpeech(Bundle @params)
+        {
+            //Text_Information.Text = "Ready!";
+        }
+
+        public void OnBeginningOfSpeech()
+        {
+           // Text_Information.Text = "Beginning";
+        }
+
+        public void OnError([GeneratedEnum] SpeechRecognizerError error)
+        {
+            Text_Error.Text = error.ToString();
+            if (error.ToString() == "NoMatch") speech_recognition();
+            else RecordingOn = false;
+        }
+
+        public void OnResults(Bundle results)
+        {
+            var data = results.GetStringArrayList(SpeechRecognizer.ResultsRecognition);
+            if (data.Count != 0)
+            {
+                string textInput = data[0];
+                Text_Speech.Text = textInput;
+                RecordingOn = mWork.Execute(textInput);
+            }
+            else Text_Information.Text = "Nie zarejestrowalem mowy";
+
+            speech_recognition();
+        }
+
+        public void OnBufferReceived(byte[] buffer) { }
+
+        public void OnEndOfSpeech() { }
+
+        public void OnEvent(int eventType, Bundle @params) { }
+
+        public void OnPartialResults(Bundle partialResults) { }
+
+        public void OnRmsChanged(float rmsdB) { }
     }
 }

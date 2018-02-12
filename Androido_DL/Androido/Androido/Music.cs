@@ -9,50 +9,31 @@ using Android.Media;
 
 namespace Androido
 {
-    class Music : MainActivity
-    {
+    class Music
+    {        
         static string music_path = "Music";
 
+        Context context;
         MediaPlayer player;
         bool IsPlaying = false;
         int music_number = 1;        
-        int music_max = Android.OS.Environment.GetExternalStoragePublicDirectory(music_path).List().Length;       
+        int music_max = Android.OS.Environment.GetExternalStoragePublicDirectory(music_path).List().Length;
+
+        Info mInfo;
 
 
-        public void Run_Music()
+        public Music(Context context)
         {
-            if (!IsPlaying) player = new MediaPlayer();
-            else
-            {
-                player.Stop();
-                IsPlaying = false;
-                player = new MediaPlayer();
-            }
-
-            try
-            {
-                string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/");
-                path = GetMusicFiles(music_number);
-                //text2.Text = path + "          " + music_number.ToString();
-                player.SetDataSource(path);
-                player.Prepare();
-                player.Start();
-                IsPlaying = true;
-            }
-            catch
-            {
-               // Toast.MakeText(this, "Nie mam czego odtworzyć!", ToastLength.Long).Show();
-            }
-        }
-
-        
+            this.context = context;
+            mInfo = new Info(context);
+        }        
 
         public bool Action_List(string command)
         {
-            switch (command)
+            switch (CheckInput(command))
             {
                 case "muzyka":
-                    Run_Music();
+                    if (!IsPlaying) Run_Music();
                     return true;
 
                 case "nastepna":
@@ -68,13 +49,19 @@ namespace Androido
                     return true;
 
                 default:
-                    //Show_Message("Nie znam takiej komendy!");
-                    // Context context1 = get_context();
-                    ///* if (IsPlaying) */Toast.MakeText(ApplicationContext(), "Nie znam takiej komendy!", ToastLength.Long).Show();
-                    return true;
+                    return false;
             }
         }
 
+        private string CheckInput(string command)
+        {
+            if (command == "Muzyko graj" || command == "muzyko graj" | command == "Muzyka" || command == "MUZYKA" || command == "MUZYKA " || command == "Muzyka " || command == "muzyka ") command = "muzyka";
+            else if (command == "Nastepna" || command == "nastepna" || command == "Następna" || command == "następna") command = "nastepna";
+            else if (command == "Poprzednia" || command == "poprzednia") command = "poprzednia";
+            else if (command == "Wyłącz" || command == "wyłącz") command = "wylacz";
+
+            return command;
+        }
 
         public void Next_Music()
         {
@@ -98,6 +85,31 @@ namespace Androido
             IsPlaying = false;
         }
 
+        public void Run_Music()
+        {
+            if (!IsPlaying) player = new MediaPlayer();
+            else
+            {
+                player.Stop();
+                IsPlaying = false;
+                player = new MediaPlayer();
+            }
+
+            try
+            {
+                string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/");
+                path = GetMusicFiles(music_number);
+                mInfo.Update_Information(path + "          " + music_number.ToString());
+                player.SetDataSource(path);
+                player.Prepare();
+                player.Start();
+                IsPlaying = true;
+            }
+            catch
+            {
+                mInfo.Update_Information("Błąd z muzyką");
+            }
+        }
 
         public string GetMusicFiles(int choice)
         {
@@ -112,7 +124,7 @@ namespace Androido
             }
             catch
             {
-               // Toast.MakeText(this, "Zła ścieżka do muzyki", ToastLength.Long).Show();
+                mInfo.Update_Information("Zła ścieżka do muzyki");
             }
             return s;
         }

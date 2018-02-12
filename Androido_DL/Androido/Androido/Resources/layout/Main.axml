@@ -3,40 +3,47 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@android:color/holo_orange_dark"
     android:id="@+id/linearLayout1">
     <TextView
-        android:text="Wpisz komendę!"
+        android:text="Podaj komendę!"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/textView1"
+        android:gravity="center" />
     <TextView
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <Button
-        android:text="START"
-        android:layout_width="88.0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnRecord"
-        android:layout_marginTop="0.0dp" />
-    <TextView
-        android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="81.5dp"
-        android:id="@+id/textYourText"
-        android:layout_marginBottom="35.0dp"
-        android:layout_marginTop="13.5dp" />
+        android:id="@+id/textView2"
+        android:gravity="center"
+        android:text="Mowa" />
     <ImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="match_parent"
-        android:layout_height="384.5dp"
+        android:layout_height="310.5dp"
         android:id="@+id/imageView1" />
+    <TextView
+        android:text="Informacja"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:gravity="center"
+        android:lines="2" />
+    <TextView
+        android:text="Error"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:gravity="center" />
+    <Button
+        android:text="START"
+        android:layout_width="200.0dp"
+        android:layout_height="80.0dp"
+        android:id="@+id/btnRecord"
+        android:layout_marginTop="0.0dp"
+        android:layout_gravity="center" />
 </LinearLayout>

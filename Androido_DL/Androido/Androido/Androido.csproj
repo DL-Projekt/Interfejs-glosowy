@@ -55,25 +55,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activity_Camera.cs" />
-    <Compile Include="Activity_SpeechRecognition.cs" />
-    <Compile Include="Activity_SpeechRecognition2.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpeechRecognition.cs" />
     <Compile Include="Work.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\Activity_SpeechRecognition.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\Activity_Music.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
