@@ -16,16 +16,16 @@ namespace Androido
         Context context;
         MediaPlayer player;
         bool IsPlaying = false;
-        int music_number = 1;        
         int music_max = Android.OS.Environment.GetExternalStoragePublicDirectory(music_path).List().Length;
+        int music_number = 0;                
 
-        Info mInfo;
+        Additional mAdditional;
 
 
         public Music(Context context)
         {
             this.context = context;
-            mInfo = new Info(context);
+            mAdditional = new Additional(context);
         }        
 
         public bool Action_List(string command)
@@ -33,20 +33,40 @@ namespace Androido
             switch (CheckInput(command))
             {
                 case "muzyka":
-                    if (!IsPlaying) Run_Music();
-                    return true;
+                    if (!IsPlaying)
+                    {
+                        mAdditional.Update_Information("Odpalam");
+                        Run_Music();
+                        return true;
+                    }
+                    else return true;
 
-                case "nastepna":
-                    if (IsPlaying) Next_Music();
-                    return true;
+                case "następna muzyka":
+                    if (IsPlaying)
+                    {
+                        mAdditional.Update_Information("Ok następna");
+                        Next_Music();
+                        return true;
+                    }
+                    else return false;
 
-                case "poprzednia":
-                    if (IsPlaying) Previous_Music();
-                    return true;
+                case "poprzednia muzyka":
+                    if (IsPlaying)
+                    {
+                        mAdditional.Update_Information("Ok poprzednia");
+                        Previous_Music();
+                        return true;
+                    }
+                    else return false;
 
-                case "wylacz":
-                    if (IsPlaying) Off_Music();
-                    return true;
+                case "wyłącz":
+                    if (IsPlaying)
+                    {
+                        mAdditional.Update_Information("Ok wyłączam");
+                        Off_Music();
+                        return true;
+                    }
+                    else return false;
 
                 default:
                     return false;
@@ -55,10 +75,13 @@ namespace Androido
 
         private string CheckInput(string command)
         {
-            if (command == "Muzyko graj" || command == "muzyko graj" | command == "Muzyka" || command == "MUZYKA" || command == "MUZYKA " || command == "Muzyka " || command == "muzyka ") command = "muzyka";
-            else if (command == "Nastepna" || command == "nastepna" || command == "Następna" || command == "następna") command = "nastepna";
-            else if (command == "Poprzednia" || command == "poprzednia") command = "poprzednia";
-            else if (command == "Wyłącz" || command == "wyłącz") command = "wylacz";
+            if (command == null) return "Error";
+            else command = command.ToLower();
+
+            if (mAdditional.CalculateSimilarity(command, "muzyka") > mAdditional.minimum_of_acceptance) command = "muzyka";
+            else if (mAdditional.CalculateSimilarity(command, "następna muzyka") > mAdditional.minimum_of_acceptance) command = "następna muzyka";
+            else if (mAdditional.CalculateSimilarity(command, "poprzednia muzyka") > mAdditional.minimum_of_acceptance) command = "poprzednia muzyka";
+            else if (mAdditional.CalculateSimilarity(command, "wyłącz") > mAdditional.minimum_of_acceptance) command = "wyłącz";
 
             return command;
         }
@@ -97,9 +120,8 @@ namespace Androido
 
             try
             {
-                string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/Music/");
+                string path = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath + ("/" + music_path + "/");
                 path = GetMusicFiles(music_number);
-                mInfo.Update_Information(path + "          " + music_number.ToString());
                 player.SetDataSource(path);
                 player.Prepare();
                 player.Start();
@@ -107,7 +129,7 @@ namespace Androido
             }
             catch
             {
-                mInfo.Update_Information("Błąd z muzyką");
+                mAdditional.Update_Information("Błąd z muzyką");
             }
         }
 
@@ -124,7 +146,7 @@ namespace Androido
             }
             catch
             {
-                mInfo.Update_Information("Zła ścieżka do muzyki");
+                mAdditional.Update_Information("Zła ścieżka do muzyki");
             }
             return s;
         }

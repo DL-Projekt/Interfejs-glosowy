@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Activity_Camera.cs" />
     <Compile Include="Image.cs" />
-    <Compile Include="Info.cs" />
+    <Compile Include="Additional.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Music.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

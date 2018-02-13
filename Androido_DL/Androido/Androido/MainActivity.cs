@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Speech;
+using System.Threading;
 
 namespace Androido
 {
@@ -22,15 +23,17 @@ namespace Androido
         private SpeechRecognizer sr;
         public bool RecordingOn = false;
 
+        Additional mAdditional;
         Work mWork;
 
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            SetContentView(Resource.Layout.Main);
-           
+            SetContentView(Resource.Layout.Main);            
+
             mWork = new Work(this);
+            mAdditional = new Additional(this);
 
             Text_Title = FindViewById<TextView>(Resource.Id.textView1);
             Text_Speech = FindViewById<TextView>(Resource.Id.textView2);
@@ -41,8 +44,8 @@ namespace Androido
 
             sr = SpeechRecognizer.CreateSpeechRecognizer(this);
             sr.SetRecognitionListener(this);
-
             
+
             recButton.Click += delegate
             {
                 if(!RecordingOn)
@@ -58,29 +61,31 @@ namespace Androido
             string test = Android.Content.PM.PackageManager.FeatureMicrophone;
             if (test == "android.hardware.microphone")
             {
-                if(RecordingOn)
+                if (RecordingOn)
                 {
                     Intent intent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 3500);
-                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 3500);
+                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 4000);
+                    intent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 4000);
                     intent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
                     intent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
                     intent.PutExtra(RecognizerIntent.ExtraCallingPackage, "this package");
                     intent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
+
+                    Thread.Sleep(1750);
                     sr.StartListening(intent);
                 }
             }
-            else Text_Information.Text = "Brak mikrofonu";
+            else mAdditional.Update_Information("Brak mikrofonu");
         }
 
         public void OnReadyForSpeech(Bundle @params)
         {
-            //Text_Information.Text = "Ready!";
+
         }
 
         public void OnBeginningOfSpeech()
         {
-           // Text_Information.Text = "Beginning";
+
         }
 
         public void OnError([GeneratedEnum] SpeechRecognizerError error)
@@ -99,9 +104,9 @@ namespace Androido
                 Text_Speech.Text = textInput;
                 RecordingOn = mWork.Execute(textInput);
             }
-            else Text_Information.Text = "Nie zarejestrowalem mowy";
+            else mAdditional.Update_Information("Nie zarejestrowalem mowy");
 
-            speech_recognition();
+           speech_recognition();
         }
 
         public void OnBufferReceived(byte[] buffer) { }
