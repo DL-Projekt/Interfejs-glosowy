@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Com.Joanzapata.Pdfview;
+//using Com.Joanzapata.Pdfview;
 using Android.Webkit;
 
 namespace Androido
@@ -17,7 +17,7 @@ namespace Androido
     [Activity(Label = "Activity1")]
     public class Activity1 : Activity
     { 
-        PDFView pdfView;
+       // PDFView pdfView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,7 +28,7 @@ namespace Androido
             WebSettings settings = webView.Settings;
             settings.JavaScriptEnabled = true;
             webView.SetWebChromeClient(new WebChromeClient());
-            webView.LoadUrl("https://www.youtube.com/watch?v=knXqreVC8QA");
+            webView.LoadUrl("https://www.youtube.com/");
            /* try
             {
                 pdfView = FindViewById<PDFView>(Resource.Id.pdfView);

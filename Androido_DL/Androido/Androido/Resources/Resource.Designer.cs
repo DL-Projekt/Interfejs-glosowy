@@ -47,11 +47,11 @@ namespace Androido
 			// aapt resource value: 0x7f040002
 			public const int btnLoad = 2130968578;
 			
-			// aapt resource value: 0x7f040006
-			public const int btnRecord = 2130968582;
+			// aapt resource value: 0x7f040009
+			public const int btnRecord = 2130968585;
 			
-			// aapt resource value: 0x7f040008
-			public const int imageView1 = 2130968584;
+			// aapt resource value: 0x7f040006
+			public const int imageView1 = 2130968582;
 			
 			// aapt resource value: 0x7f040003
 			public const int linearLayout1 = 2130968579;
@@ -63,7 +63,10 @@ namespace Androido
 			public const int textView2 = 2130968581;
 			
 			// aapt resource value: 0x7f040007
-			public const int textYourText = 2130968583;
+			public const int textView3 = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int textView4 = 2130968584;
 			
 			// aapt resource value: 0x7f040001
 			public const int txtUrl = 2130968577;
